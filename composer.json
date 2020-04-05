@@ -1,0 +1,27 @@
+{
+  "name": "kreelabs/woo-sales-report",
+  "license": "proprietary",
+  "description": "All in one reporting plugin for WooCommerce.",
+  "type": "project",
+  "authors": [
+    {
+      "name": "KreeLabs",
+      "email": "hello@kreelabs.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "KreeLabs\\WSR\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}

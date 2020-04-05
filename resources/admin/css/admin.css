@@ -1,0 +1,79 @@
+/* Product column fixes */
+table.wp-list-table.posts .column-earning {
+    width: 7%;
+}
+
+table.wp-list-table.posts .column-unit_sold {
+    width: 5%;
+}
+
+.order-status {
+    display: -webkit-inline-box;
+    display: inline-flex;
+    line-height: 2.5em;
+    color: #777;
+    background: #e5e5e5;
+    border-radius: 4px;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    margin: -.25em 0;
+    cursor: inherit !important;
+    white-space: nowrap;
+    max-width: 100%
+}
+
+.order-status.status-completed {
+    background: #c8d7e1;
+    color: #2e4453
+}
+
+.order-status.status-on-hold {
+    background: #f8dda7;
+    color: #94660c
+}
+
+.order-status.status-failed {
+    background: #eba3a3;
+    color: #761919
+}
+
+.order-status.status-processing {
+    background: #c6e1c6;
+    color: #5b841b
+}
+
+.order-status.status-trash {
+    background: #eba3a3;
+    color: #761919
+}
+
+.order-status > span {
+    margin: 0 1em;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.wsr-settings-action .card {
+    margin-right: 20px;
+    width: 20%;
+}
+
+.wsr-settings-action .card h2 {
+    padding: 10px 0;
+}
+
+.wsr-settings-action .card.danger {
+    background: rgba(235, 163, 163, 0.8);
+    border-color: rgba(235, 163, 163, 0.8);
+    color: #761919;
+}
+
+.wsr-settings-action .card.danger h2,
+.wsr-settings-action .card.danger p {
+    color: #761919 !important;
+}
+
+.wsr-settings-action p.button-danger input[type=submit] {
+    background-color: #bb4444;
+    border-color: #b54141;
+    color: #f2f2f2;
+}
