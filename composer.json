@@ -1,6 +1,6 @@
 {
   "name": "kreelabs/woo-sales-report",
-  "license": "proprietary",
+  "license": "GPL-2.0-or-later",
   "description": "All in one reporting plugin for WooCommerce.",
   "type": "project",
   "authors": [
