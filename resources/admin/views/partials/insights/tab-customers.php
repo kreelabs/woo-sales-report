@@ -30,27 +30,6 @@ if (isset($_GET['show'])) {
             <small><?= translate('Guest checkout') ?></small>
         </span>
     </a>
-    <a href="<?= WSR_PREMIUM_LINK ?>" title="<?= WSR_SWITCH_PREMIUM ?>" target="_blank"
-       class="wsr-badge <?= ($current === 'countries' ? 'current' : '') ?>">
-        <span class="wsr-badge-content">
-            <h3>x</h3>
-            <small><?= translate('Countries') ?></small>
-        </span>
-    </a>
-    <a href="<?= WSR_PREMIUM_LINK ?>" title="<?= WSR_SWITCH_PREMIUM ?>" target="_blank"
-       class="wsr-badge <?= ($current === 'payment_methods' ? 'current' : '') ?>">
-        <span class="wsr-badge-content">
-            <h3>x</h3>
-            <small><?= translate('Payment methods') ?></small>
-        </span>
-    </a>
-    <a href="<?= WSR_PREMIUM_LINK ?>" title="<?= WSR_SWITCH_PREMIUM ?>" target="_blank"
-       class="wsr-badge <?= ($current === 'devices' ? 'current' : '') ?>">
-        <span class="wsr-badge-content">
-            <h3>x</h3>
-            <small><?= translate('Unique devices') ?></small>
-        </span>
-    </a>
     <div class="clear"></div>
 </div>
 

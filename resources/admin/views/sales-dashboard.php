@@ -163,18 +163,6 @@ use function KreeLabs\WSR\format_number;
     </div>
     <div class="row">
         <div class="col s12 m12 l12">
-            <div class="col s12 m12 l12">
-                <?php
-                Dashboard::infoCard([
-                    'icon' => 'assessment',
-                    'message' => 'Switch to <a href="' . WSR_PREMIUM_LINK . '">premium</a> to view other chart types and access cool new features',
-                ]);
-                ?>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12 m12 l12">
             <div class="col s12 m6 l6">
                 <?php
                 Dashboard::chart([
@@ -242,18 +230,6 @@ use function KreeLabs\WSR\format_number;
                 ]);
                 ?>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12 m12 l12">
-            <?php
-            Dashboard::infoCard([
-                'icon' => 'sentiment_satisfied',
-                'message' => 'Looking for more customized charts and analysis to suit your business needs? 
-Write to us with the details at <a href="mailto:hello@kreelabs.com">hello@kreelabs.com</a> 
-and we will get back to you as soon as possible.',
-            ]);
-            ?>
         </div>
     </div>
 </div>

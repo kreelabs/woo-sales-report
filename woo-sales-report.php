@@ -29,8 +29,6 @@ if ( ! defined('ABSPATH')) {
 define('WSR_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WSR_TEXT_DOMAIN', 'woo-sales-report');
 define('WSR_EXPORT_LIMIT', 100);
-define('WSR_PREMIUM_LINK', 'https://kreelabs.com');
-define('WSR_SWITCH_PREMIUM', 'Switch to premium to activate this feature');
 
 require __DIR__ . '/vendor/autoload.php';
 

@@ -120,11 +120,7 @@ class OrderList extends \WP_List_Table
                 );
 
             case 'total':
-                return sprintf(
-                    '<a href="#" class="wsr-total wsr-toggle" title="%s">%s</a>',
-                    translate('Switch to premium to view price breakdown'),
-                    wc_price($item[$column])
-                );
+                return wc_price($item[$column]);
 
             case 'items':
                 $items = [];

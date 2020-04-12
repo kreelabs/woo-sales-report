@@ -3,7 +3,7 @@
 <p align="center">
     <i>All in one reporting plugin for WooCommerce.</i>
     <br/><br/>
-    <a href="https://www.youtube.com/watch?v=fmZrJs1Jj04" target="_blank" rel="noopener">
+    <a href="https://www.youtube.com/watch?v=fmZrJs1Jj04">
         <img src="https://img.youtube.com/vi/fmZrJs1Jj04/0.jpg">
     </a>
     <br/>
