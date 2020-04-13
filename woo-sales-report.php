@@ -1,8 +1,8 @@
 <?php
 
 /***
- * Plugin Name: Woo Sales Report
- * Plugin URI: https://kreelabs.com
+ * Plugin Name: Sales Report Woo
+ * Plugin URI: https://github.com/kreelabs/woo-sales-report
  * Description: All in one reporting plugin for WooCommerce.
  * Version: 0.0.0
  * Requires at least: 4.3
