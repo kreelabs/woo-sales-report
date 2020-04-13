@@ -123,6 +123,10 @@ class Dashboard
         foreach ($topProducts as $topProduct) {
             $product = wc_get_product($topProduct['product_id']);
 
+            if ($product === false) {
+                continue;
+            }
+
             $topProductsChartData['data'][]   = $topProduct['subtotal'];
             $topProductsChartData['labels'][] = $product->get_title();
         }
