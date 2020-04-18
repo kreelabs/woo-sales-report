@@ -26,7 +26,7 @@ class Customer extends Entity
      *
      * @return string
      */
-    public function getCustomerTotalQuery($filter = [])
+    public function getCustomerTotalQuery($filter = '')
     {
         $postsTable    = $this->db->wpdb->posts;
         $postMetaTable = $this->db->wpdb->postmeta;
@@ -37,9 +37,15 @@ class Customer extends Entity
                     ) pm
                     INNER JOIN ${postMetaTable} wpm ON pm.post_id=wpm.post_id
                     INNER JOIN ${postsTable} p ON wpm.post_id=p.ID
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS first_name FROM ${postMetaTable} WHERE meta_key='_billing_first_name'
+                    ) fn ON p.ID=fn.post_id
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS last_name FROM ${postMetaTable} WHERE meta_key='_billing_last_name'
+                    ) ln ON p.ID=ln.post_id
                     WHERE wpm.meta_key = '_customer_user' AND wpm.meta_value!=0 AND p.post_type='shop_order'";
 
-        $query .= ' GROUP BY pm.email';
+        $query .= ' GROUP BY pm.email, fn.first_name, ln.last_name';
 
         if ( ! empty($filter)) {
             $query .= " HAVING $filter";
@@ -51,7 +57,7 @@ class Customer extends Entity
     /**
      * {@inheritdoc}
      */
-    public function getTotal(array $filter = [])
+    public function getTotal($filter = '')
     {
         return $this->db->rawCount($this->getCustomerTotalQuery($filter));
     }
@@ -79,9 +85,15 @@ class Customer extends Entity
                     INNER JOIN (
                       SELECT post_id, meta_value AS total_paid FROM ${postMetaTable} WHERE meta_key='_order_total'
                     ) ot ON p.ID=ot.post_id
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS first_name FROM ${postMetaTable} WHERE meta_key='_billing_first_name'
+                    ) fn ON p.ID=fn.post_id
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS last_name FROM ${postMetaTable} WHERE meta_key='_billing_last_name'
+                    ) ln ON p.ID=ln.post_id
                     WHERE wpm.meta_key = '_customer_user' AND wpm.meta_value!=0 AND p.post_type='shop_order'";
 
-        $query .= ' GROUP BY pm.email';
+        $query .= ' GROUP BY pm.email, fn.first_name, ln.last_name';
 
         if ( ! empty($filter)) {
             $query .= " HAVING $filter";
@@ -112,7 +124,7 @@ class Customer extends Entity
     /**
      * {@inheritdoc}
      */
-    public function getList($perPage, $currentPage, array $filter = [])
+    public function getList($perPage, $currentPage, $filter = '')
     {
         $query = $this->getCustomerQuery($filter, ($currentPage - 1) * $perPage, $perPage);
 
@@ -137,9 +149,15 @@ class Customer extends Entity
                     ) pm
                     INNER JOIN ${postMetaTable} wpm ON pm.post_id=wpm.post_id
                     INNER JOIN ${postsTable} p ON wpm.post_id=p.ID
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS first_name FROM ${postMetaTable} WHERE meta_key='_billing_first_name'
+                    ) fn ON p.ID=fn.post_id
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS last_name FROM ${postMetaTable} WHERE meta_key='_billing_last_name'
+                    ) ln ON p.ID=ln.post_id
                     WHERE wpm.meta_key = '_customer_user' AND p.post_type='shop_order'";
 
-        $query .= ' GROUP BY pm.email';
+        $query .= ' GROUP BY pm.email, fn.first_name, ln.last_name';
 
         if ( ! empty($filter)) {
             $query .= " HAVING $filter";
@@ -166,9 +184,15 @@ class Customer extends Entity
                     ) pm
                     INNER JOIN ${postMetaTable} wpm ON pm.post_id=wpm.post_id
                     INNER JOIN ${postsTable} p ON wpm.post_id=p.ID
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS first_name FROM ${postMetaTable} WHERE meta_key='_billing_first_name'
+                    ) fn ON p.ID=fn.post_id
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS last_name FROM ${postMetaTable} WHERE meta_key='_billing_last_name'
+                    ) ln ON p.ID=ln.post_id
                     WHERE wpm.meta_key = '_customer_user' AND wpm.meta_value=0 AND p.post_type='shop_order'";
 
-        $query .= ' GROUP BY pm.email';
+        $query .= ' GROUP BY pm.email, fn.first_name, ln.last_name';
 
         if ( ! empty($filter)) {
             $query .= " HAVING $filter";
@@ -202,9 +226,15 @@ class Customer extends Entity
                     INNER JOIN (
                       SELECT post_id, meta_value AS total_paid FROM ${postMetaTable} WHERE meta_key='_order_total'
                     ) ot ON p.ID=ot.post_id
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS first_name FROM ${postMetaTable} WHERE meta_key='_billing_first_name'
+                    ) fn ON p.ID=fn.post_id
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS last_name FROM ${postMetaTable} WHERE meta_key='_billing_last_name'
+                    ) ln ON p.ID=ln.post_id
                     WHERE wpm.meta_key = '_customer_user' AND p.post_type='shop_order'";
 
-        $query .= ' GROUP BY pm.email';
+        $query .= ' GROUP BY pm.email, fn.first_name, ln.last_name';
 
         if ( ! empty($filter)) {
             $query .= " HAVING $filter";
@@ -255,9 +285,15 @@ class Customer extends Entity
                     INNER JOIN (
                       SELECT post_id, meta_value AS total_paid FROM ${postMetaTable} WHERE meta_key='_order_total'
                     ) ot ON p.ID=ot.post_id
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS first_name FROM ${postMetaTable} WHERE meta_key='_billing_first_name'
+                    ) fn ON p.ID=fn.post_id
+                    INNER JOIN (
+                      SELECT post_id, meta_value AS last_name FROM ${postMetaTable} WHERE meta_key='_billing_last_name'
+                    ) ln ON p.ID=ln.post_id
                     WHERE wpm.meta_key = '_customer_user' AND wpm.meta_value=0 AND p.post_type='shop_order'";
 
-        $query .= ' GROUP BY pm.email';
+        $query .= ' GROUP BY pm.email, fn.first_name, ln.last_name';
 
         if ( ! empty($filter)) {
             $query .= " HAVING $filter";

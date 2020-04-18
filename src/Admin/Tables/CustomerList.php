@@ -128,7 +128,7 @@ class CustomerList extends AbstractCustomerList
 
         if ( ! empty($_REQUEST['s'])) {
             $keyword = '%' . esc_sql(sanitize_text_field(trim($_REQUEST['s']))) . '%';
-            $filter  = ['display_name' => $keyword];
+            $filter  = "first_name LIKE '$keyword' OR last_name LIKE '$keyword' OR email LIKE '$keyword'";
             $total   = $this->customer->getTotal($filter);
         }
 
