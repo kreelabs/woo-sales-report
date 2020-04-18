@@ -88,13 +88,14 @@ class Customer extends Entity
         }
 
         if ( ! empty($_REQUEST['orderby'])) {
-            $order = ! empty($_REQUEST['order']) ? esc_sql($_REQUEST['order']) : 'desc';
+            $order   = ! empty($_REQUEST['order']) ? esc_sql($_REQUEST['order']) : 'desc';
+            $orderBy = sanitize_sql_orderby($_REQUEST['orderby']);
 
             if ( ! in_array(strtolower($order), ['asc', 'desc'])) {
                 $order = 'desc';
             }
 
-            $query .= " ORDER BY ${_REQUEST['orderby']} ${order}";
+            $query .= " ORDER BY ${orderBy} ${order}";
         } else {
             $query .= " ORDER BY last_order_date desc";
         }
@@ -210,13 +211,14 @@ class Customer extends Entity
         }
 
         if ( ! empty($_REQUEST['orderby'])) {
-            $order = ! empty($_REQUEST['order']) ? esc_sql($_REQUEST['order']) : 'desc';
+            $order   = ! empty($_REQUEST['order']) ? esc_sql($_REQUEST['order']) : 'desc';
+            $orderBy = sanitize_sql_orderby($_REQUEST['orderby']);
 
             if ( ! in_array(strtolower($order), ['asc', 'desc'])) {
                 $order = 'desc';
             }
 
-            $query .= " ORDER BY ${_REQUEST['orderby']} ${order}";
+            $query .= " ORDER BY ${orderBy} ${order}";
         } else {
             $query .= " ORDER BY last_order_date desc";
         }
@@ -262,13 +264,14 @@ class Customer extends Entity
         }
 
         if ( ! empty($_REQUEST['orderby'])) {
-            $order = ! empty($_REQUEST['order']) ? esc_sql($_REQUEST['order']) : 'desc';
+            $order   = ! empty($_REQUEST['order']) ? esc_sql($_REQUEST['order']) : 'desc';
+            $orderBy = sanitize_sql_orderby($_REQUEST['orderby']);
 
             if ( ! in_array(strtolower($order), ['asc', 'desc'])) {
                 $order = 'desc';
             }
 
-            $query .= " ORDER BY ${_REQUEST['orderby']} ${order}";
+            $query .= " ORDER BY ${orderBy} ${order}";
         } else {
             $query .= " ORDER BY last_order_date desc";
         }

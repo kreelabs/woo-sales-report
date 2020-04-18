@@ -2,7 +2,7 @@
     <div class="wsr-table-title ">
         <?php if ( ! empty($_REQUEST['s'])): ?>
             <h3 class="alignleft"><?= translate('Showing search results for') ?>
-                &ldquo;<em><?= $_REQUEST['s'] ?></em>&rdquo;
+                &ldquo;<em><?= sanitize_text_field($_REQUEST['s']) ?></em>&rdquo;
             </h3>
         <?php elseif ( ! empty($_REQUEST['_customer'])):
             $user = get_user_by('id', esc_attr($_REQUEST['_customer']));
@@ -22,7 +22,7 @@
 <?php endif; ?>
 
 <form method="GET" action="<?= admin_url() ?>admin.php"
-      class="wsr-sales-insights-form page-<?= ! empty($_REQUEST['show']) ? $_REQUEST['show'] : 'orders' ?>">
+      class="wsr-sales-insights-form page-<?= ! empty($_REQUEST['show']) ? esc_attr($_REQUEST['show']) : 'orders' ?>">
     <input type="hidden" name="page" value="<?= esc_attr($_REQUEST['page']) ?>"/>
 
     <?php if ( ! empty($_REQUEST['show'])): ?>

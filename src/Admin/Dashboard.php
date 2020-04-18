@@ -64,7 +64,7 @@ class Dashboard
      */
     public function addAssets()
     {
-        if (isset($_GET['page']) && $_GET['page'] === 'woo-sales-report') {
+        if (isset($_GET['page']) && esc_attr($_GET['page']) === 'woo-sales-report') {
             wp_enqueue_style(
                 'wsr-materialize',
                 plugins_url('/../resources/admin/css/materialize.min.css', dirname(__FILE__))

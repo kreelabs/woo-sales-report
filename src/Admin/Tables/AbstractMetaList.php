@@ -30,7 +30,7 @@ abstract class AbstractMetaList extends WP_List_Table
 
         $current = '';
         if (isset($_GET['show'])) {
-            $current = $_GET['show'];
+            $current = sanitize_key($_GET['show']);
         }
 
         return [

@@ -127,10 +127,8 @@ class CustomerList extends AbstractCustomerList
         $currentPage = $this->get_pagenum();
 
         if ( ! empty($_REQUEST['s'])) {
-            $_REQUEST['s'] = trim($_REQUEST['s']);
-
-            $keyword = esc_sql($_REQUEST['s']);
-            $filter  = ['display_name' => '%' . $keyword . '%'];
+            $keyword = '%' . esc_sql(sanitize_text_field(trim($_REQUEST['s']))) . '%';
+            $filter  = ['display_name' => $keyword];
             $total   = $this->customer->getTotal($filter);
         }
 

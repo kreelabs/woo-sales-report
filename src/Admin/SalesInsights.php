@@ -61,7 +61,7 @@ class SalesInsights
      */
     public function addAssets()
     {
-        if (isset($_GET['page']) && $_GET['page'] === 'woo-sales-report-insights') {
+        if (isset($_GET['page']) && esc_attr($_GET['page']) === 'woo-sales-report-insights') {
             wp_enqueue_style(
                 'wsr-sales-insights',
                 plugins_url('/../resources/admin/css/stats.css', dirname(__FILE__))
@@ -130,7 +130,7 @@ class SalesInsights
 
         $current = 'buyers';
         if (isset($_GET['show'])) {
-            $current = $_GET['show'];
+            $current = sanitize_key($_GET['show']);
         }
 
         if ('customers' === $activeTab) {

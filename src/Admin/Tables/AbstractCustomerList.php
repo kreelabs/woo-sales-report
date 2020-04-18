@@ -61,7 +61,7 @@ abstract class AbstractCustomerList extends WP_List_Table
 
         $current = '';
         if (isset($_GET['show'])) {
-            $current = $_GET['show'];
+            $current = sanitize_key($_GET['show']);
         }
 
         return [
@@ -140,12 +140,12 @@ abstract class AbstractCustomerList extends WP_List_Table
 
         if (isset($_REQUEST['wsr_customer_filter']) && -1 != $_REQUEST['wsr_customer_filter']) {
             $position   = 'top';
-            $exportType = $_REQUEST['wsr_customer_filter'];
+            $exportType = sanitize_key($_REQUEST['wsr_customer_filter']);
         }
 
         if (isset($_REQUEST['wsr_customer_filter2']) && -1 != $_REQUEST['wsr_customer_filter2']) {
             $position   = 'bottom';
-            $exportType = $_REQUEST['wsr_customer_filter2'];
+            $exportType = sanitize_key($_REQUEST['wsr_customer_filter2']);
         }
         ?>
         <div class="alignleft actions wsr-table-filters">
@@ -190,11 +190,11 @@ abstract class AbstractCustomerList extends WP_List_Table
         $exportType = 'all';
 
         if (isset($_REQUEST['wsr_customer_filter']) && -1 != $_REQUEST['wsr_customer_filter']) {
-            $exportType = $_REQUEST['wsr_customer_filter'];
+            $exportType = sanitize_key($_REQUEST['wsr_customer_filter']);
         }
 
         if (isset($_REQUEST['wsr_customer_filter2']) && -1 != $_REQUEST['wsr_customer_filter2']) {
-            $exportType = $_REQUEST['wsr_customer_filter2'];
+            $exportType = sanitize_key($_REQUEST['wsr_customer_filter2']);
         }
 
         switch ($action) {

@@ -6,7 +6,7 @@ $url = '?page=woo-sales-report-insights';
 
 $current = '';
 if (isset($_GET['show'])) {
-    $current = $_GET['show'];
+    $current = sanitize_key($_GET['show']);
 }
 ?>
 
@@ -34,7 +34,7 @@ if (isset($_GET['show'])) {
 </div>
 
 <form method="GET" action="<?= admin_url() ?>admin.php"
-      class="wsr-sales-insights-form page-<?= ! empty($_REQUEST['show']) ? $_REQUEST['show'] : 'buyers' ?>">
+      class="wsr-sales-insights-form page-<?= ! empty($_REQUEST['show']) ? esc_attr($_REQUEST['show']) : 'buyers' ?>">
     <input type="hidden" name="page" value="<?= esc_attr($_REQUEST['page']) ?>"/>
 
     <?php if ( ! empty($_REQUEST['show'])): ?>

@@ -84,9 +84,7 @@ class GuestList extends AbstractCustomerList
         $currentPage = $this->get_pagenum();
 
         if ( ! empty($_REQUEST['s'])) {
-            $_REQUEST['s'] = trim($_REQUEST['s']);
-
-            $keyword = '%' . esc_sql($_REQUEST['s']) . '%';
+            $keyword = '%' . esc_sql(sanitize_text_field(trim($_REQUEST['s']))) . '%';
             $filter  = "first_name LIKE '$keyword' OR last_name LIKE '$keyword' OR email LIKE '$keyword'";
             $total   = $this->guest->getGuestTotal($filter);
         }

@@ -172,7 +172,7 @@ class OrderList extends \WP_List_Table
         $args = $this->process_filter_action();
 
         if ( ! empty($_REQUEST['_customer'])) {
-            $args += ['customer' => $_REQUEST['_customer']];
+            $args += ['customer' => esc_sql($_REQUEST['_customer'])];
         }
 
         $searchArgs  = [];
@@ -180,7 +180,7 @@ class OrderList extends \WP_List_Table
         $currentPage = $this->get_pagenum();
 
         if ( ! empty($_REQUEST['s'])) {
-            $keyword = trim($_REQUEST['s']);
+            $keyword = esc_sql(sanitize_text_field(trim($_REQUEST['s'])));
 
             $searchArgs = [
                 'search' => $keyword,
@@ -189,15 +189,22 @@ class OrderList extends \WP_List_Table
 
         $args += $searchArgs;
 
-        $total = $this->order->getTotal($args);
+        $total   = $this->order->getTotal($args);
+        $order   = ! empty($_REQUEST['order']) ? esc_sql($_REQUEST['order']) : 'desc';
+        $orderBy = ! empty($_REQUEST['orderby']) ? sanitize_sql_orderby($_REQUEST['orderby']) : 'date_created';
+        $paged   = ! empty($_REQUEST['paged']) ? intval($_REQUEST['paged']) : 1;
+
+        if ( ! in_array(strtolower($order), ['asc', 'desc'])) {
+            $order = 'desc';
+        }
 
         $args += [
             'type' => 'shop_order',
             'limit' => $perPage,
             'offset' => ($currentPage - 1) * $perPage,
-            'paged' => isset($_REQUEST['paged']) ? $_REQUEST['paged'] : 1,
-            'orderby' => isset($_REQUEST['orderby']) ? $_REQUEST['orderby'] : 'date_created',
-            'order' => isset($_REQUEST['order']) ? $_REQUEST['order'] : 'desc',
+            'paged' => $paged,
+            'orderby' => $orderBy,
+            'order' => $order,
         ];
 
         $this->set_pagination_args([
@@ -259,11 +266,11 @@ class OrderList extends \WP_List_Table
         $type = 'all';
 
         if (isset($_REQUEST[$key]) && -1 != $_REQUEST[$key]) {
-            $type = $_REQUEST[$key];
+            $type = sanitize_key($_REQUEST[$key]);
         }
 
         if (isset($_REQUEST[$key . '2']) && -1 != $_REQUEST[$key . '2']) {
-            $type = $_REQUEST[$key . '2'];
+            $type = sanitize_key($_REQUEST[$key . '2']);
         }
 
         return $type;
@@ -327,12 +334,12 @@ class OrderList extends \WP_List_Table
 
         if (isset($_REQUEST['wsr_order_date_filter']) && -1 != $_REQUEST['wsr_order_date_filter']) {
             $position   = 'top';
-            $exportType = $_REQUEST['wsr_order_date_filter'];
+            $exportType = sanitize_key($_REQUEST['wsr_order_date_filter']);
         }
 
         if (isset($_REQUEST['wsr_order_date_filter2']) && -1 != $_REQUEST['wsr_order_date_filter2']) {
             $position   = 'bottom';
-            $exportType = $_REQUEST['wsr_order_date_filter2'];
+            $exportType = sanitize_key($_REQUEST['wsr_order_date_filter2']);
         }
         ?>
         <label for="wsr-order-date-filter" class="screen-reader-text"><?php translate('Filter by date'); ?></label>
@@ -368,12 +375,12 @@ class OrderList extends \WP_List_Table
 
         if (isset($_REQUEST['wsr_order_status_filter']) && -1 != $_REQUEST['wsr_order_status_filter']) {
             $position   = 'top';
-            $exportType = $_REQUEST['wsr_order_status_filter'];
+            $exportType = sanitize_key($_REQUEST['wsr_order_status_filter']);
         }
 
         if (isset($_REQUEST['wsr_order_status_filter2']) && -1 != $_REQUEST['wsr_order_status_filter2']) {
             $position   = 'bottom';
-            $exportType = $_REQUEST['wsr_order_status_filter2'];
+            $exportType = sanitize_key($_REQUEST['wsr_order_status_filter2']);
         }
         ?>
         <label for="wsr-order-status-filter"
