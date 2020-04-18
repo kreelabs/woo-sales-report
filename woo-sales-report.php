@@ -27,7 +27,6 @@ if ( ! defined('ABSPATH')) {
 }
 
 define('WSR_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('WSR_TEXT_DOMAIN', 'woo-sales-report');
 define('WSR_EXPORT_LIMIT', 100);
 
 require __DIR__ . '/vendor/autoload.php';

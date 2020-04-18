@@ -39,7 +39,7 @@ function error_notice($message)
  */
 function translate($string)
 {
-    return __($string, WSR_TEXT_DOMAIN);
+    return __($string, 'sales-report-woo');
 }
 
 /**
